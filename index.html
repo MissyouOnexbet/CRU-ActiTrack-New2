@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hours Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <div id="screen-login" class="screen active">
+    <div class="login-container">
+      <h2>เข้าสู่ระบบ</h2>
+      <p>เพื่อบันทึกกิจกรรมของคุณ</p>
+      
+      <div class="input-group">
+        <label>อีเมล</label>
+        <input type="email" id="login-email" placeholder="example@email.com">
+      </div>
+      <div class="input-group">
+        <label>รหัสผ่าน</label>
+        <input type="password" id="login-pass" placeholder="••••••••">
+      </div>
+      
+      <button class="btn btn-primary" onclick="window.handleEmailAuth()">เข้าสู่ระบบ / สร้างบัญชี</button>
+      
+      <div class="divider">หรือ</div>
+      
+      <button class="btn btn-google" onclick="window.handleGoogleLogin()">
+        <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google Logo">
+        เข้าสู่ระบบด้วย Google
+      </button>
+    </div>
+  </div>
+
+  <div id="screen-main" class="screen">
+    <header class="header">
+      <div class="user-icon">👤</div>
+      <div class="header-title">
+        <h1>Hours Tracker</h1>
+        <span id="user-email-display">กำลังโหลด...</span>
+      </div>
+      <div class="btn-logout" onclick="window.logout()">ออกระบบ</div>
+    </header>
+
+    <div class="total-box">
+      <div class="total-label">ชั่วโมงรวม</div>
+      <div class="total-number" id="display-total-hours">0</div>
+      <div class="total-sub">สะสมทั้งหมด</div>
+    </div>
+
+    <div class="list-section">
+      <h3 class="list-title">รายการกิจกรรม</h3>
+      <div id="activity-list" class="activity-list">
+        </div>
+    </div>
+
+    <button class="fab" onclick="window.switchScreen('screen-add')">+</button>
+  </div>
+
+  <div id="screen-add" class="screen">
+    <header class="header header-back" onclick="window.switchScreen('screen-main')">
+      <div class="back-btn">❮ ย้อนกลับ</div>
+      <div class="header-title-add">เพิ่มกิจกรรม</div>
+    </header>
+
+    <div class="form-container">
+      <div class="input-group">
+        <label>ชื่อกิจกรรม</label>
+        <input type="text" id="input-name" placeholder="เช่น ประชุมทีม Agile...">
+      </div>
+      
+      <div class="input-group">
+        <label>วันที่และเวลา</label>
+        <input type="datetime-local" id="input-datetime">
+      </div>
+
+      <div class="input-group">
+        <label>จำนวนชั่วโมง</label>
+        <input type="number" id="input-hours" placeholder="0.5" step="0.5" min="0">
+      </div>
+
+      <button class="btn btn-primary btn-save" onclick="window.saveActivity()">บันทึก</button>
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
